@@ -17,5 +17,3 @@ export default function counterReducer(
       return state;
   }
 }
-
-let action = { type: 'INCREMENT' };
