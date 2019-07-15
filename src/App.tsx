@@ -10,7 +10,6 @@ export default class App extends Component<{}> {
     counter: 0
   };
   render() {
-    console.log(this.counterCall.getCounter());
     return (
       <View style={styles.container}>
         <Text style={{ fontSize: 40 }}>{this.state.counter}</Text>
