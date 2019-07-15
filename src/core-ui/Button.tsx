@@ -2,35 +2,61 @@ import * as React from 'react';
 import {
   TouchableOpacity,
   View,
+  Text,
   StyleSheet,
   TouchableOpacityProps,
   StyleProp,
-  ViewStyle
+  ViewStyle,
+  TextStyle
 } from 'react-native';
 
 type Props = TouchableOpacityProps & {
-  type: 'default' | 'primary' | 'alert' | 'cancel';
+  type?: 'default' | 'primary' | 'alert' | 'cancel';
   containerStyle?: StyleProp<ViewStyle>;
+  contentStyle?: StyleProp<TextStyle>;
   children: string | React.ReactNode;
 };
 
-function Button(props: Props) {
-  let { children, type, containerStyle, ...otherProps } = props;
-  //switch style based on type
-  //handle children is a text or ReactNode
+const COLOR_TYPES = {
+  default: '#FEF',
+  primary: '#00A',
+  alert: 'red',
+  cancel: '#EEF'
+};
+
+export default function Button(props: Props) {
+  let { children, type, contentStyle, containerStyle, ...otherProps } = props;
+  let content =
+    typeof children === 'string' ? (
+      <Text style={[styles.text, contentStyle]}>{children}</Text>
+    ) : (
+      children
+    );
   return (
-    <TouchableOpacity style={[styles.default, containerStyle]} {...otherProps}>
-      {children}
+    <TouchableOpacity
+      style={[
+        {
+          ...styles.container,
+          backgroundColor: COLOR_TYPES[type]
+        },
+        containerStyle
+      ]}
+      {...otherProps}
+    >
+      {content}
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10
+    margin: 10,
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#FEF'
   },
-  default: {},
-  primary: {},
-  alert: {},
-  cancel: {}
+  text: {
+    color: '#FFF',
+    fontSize: 14
+  }
 });
