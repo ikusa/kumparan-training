@@ -1,4 +1,4 @@
-import { Action } from './types';
+import { Action } from '../types';
 type State = {
   counter: number;
 };

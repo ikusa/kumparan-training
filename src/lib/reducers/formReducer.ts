@@ -1,4 +1,4 @@
-import { Action } from './types';
+import { Action } from '../types';
 type State = {
   username: string;
   password: string;
