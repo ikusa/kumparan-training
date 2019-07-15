@@ -3,7 +3,8 @@ type CounterNumber = {
   decrement: () => void;
   getCounter: () => void;
 };
-function counterNumber() {
+
+export default function counterNumber() {
   let counter = 0;
   let increment = () => {
     counter = counter + 1;
@@ -12,22 +13,11 @@ function counterNumber() {
     counter = counter - 1;
   };
   let getCounter = () => {
-    console.log(counter);
+    return counter;
   };
   return {
     increment,
     decrement,
-    getCounter,
-    resetCounter: () => {}
+    getCounter
   };
 }
-
-let counterCall = counterNumber();
-let { increment, decrement, getCounter } = counterCall;
-
-increment();
-getCounter();
-increment();
-getCounter();
-decrement();
-getCounter();
